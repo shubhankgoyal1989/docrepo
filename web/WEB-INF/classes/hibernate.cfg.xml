@@ -15,10 +15,14 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost/api_test</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
+        
+        <!-- for developememt enviourment only, disable in production -->
         <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.pool_size">10</property>
 
-        <!-- List of XML mapping files -->
-        <mapping class="com.ams.documentor.folder.Folder"/>
+        <!-- List of classes that contains annotations, typically in com.ams.documentor.model package -->
+        <mapping class="com.ams.documentor.model.Folder"/>
+        <mapping class="com.ams.documentor.model.Document"/>
 
     </session-factory>
 </hibernate-configuration>
