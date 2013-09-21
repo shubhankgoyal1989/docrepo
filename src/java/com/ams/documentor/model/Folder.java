@@ -1,5 +1,6 @@
-package com.ams.documentor.folder;
+package com.ams.documentor.model;
 
+import com.ams.utilities.OperandUtil;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -10,8 +11,31 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ams_folder")
-public class Folder {
+public class Folder implements Model{
 
+    protected Folder() {
+    
+    }
+    
+    /**
+     * Initialize the folder object, All the parameters are manadatory.
+     * @param name
+     * @param userIndex
+     * @param parentFolderIndex 
+     * 
+     * @throws IllegalArgumentException if any of the parameters is null.
+     */
+    public Folder(String name,int userIndex, int parentFolderIndex){
+        if(OperandUtil.isNull(name) || OperandUtil.isNull(userIndex) || OperandUtil.isNull(parentFolderIndex)){
+            throw new IllegalArgumentException("Folder name, User Index, ParentFolder index are manadatory params");
+        }
+        this.folderName = name;
+        this.hasChildFolders = false;
+        this.createdAt = new Date();
+        this.lastModifiedAt = new Date();
+        this.owner = userIndex;
+        this.parentFolderIndex = parentFolderIndex | 0;
+    }
     @Id
     @GeneratedValue
     @Column(name = "folderindex")
@@ -22,6 +46,7 @@ public class Folder {
     
     @Column(name = "name")
     String folderName;
+    
     
     @Column(name = "owner")
     int owner;
