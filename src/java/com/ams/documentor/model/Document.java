@@ -46,7 +46,17 @@ public class Document implements Model {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date lastAccessedAt;
     
-    
+    @ManyToOne
+    @JoinColumn(name="siteId")
+    Site site;
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }    
 
     public int getDocumentIndex() {
         return documentIndex;

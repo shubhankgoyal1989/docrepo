@@ -23,6 +23,7 @@
         <!-- List of classes that contains annotations, typically in com.ams.documentor.model package -->
         <mapping class="com.ams.documentor.model.Folder"/>
         <mapping class="com.ams.documentor.model.Document"/>
+        <mapping class="com.ams.documentor.model.Site"/>
 
     </session-factory>
 </hibernate-configuration>
